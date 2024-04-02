@@ -1,0 +1,8 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<p>    عزیز سفارش شما با موفقیت انجام شد {{ order.user.full_name }} </p>
+<p>کد رهگیری سفارش شما :{{ order.random_code }}</p>
+
+{% endblock %}

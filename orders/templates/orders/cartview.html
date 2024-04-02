@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ردیف</th>
+        <th scope="col">کالا</th>
+        <th scope="col">تعداد</th>
+        <th scope="col">قیمت واحد</th>
+        <th scope="col">قیمت کل</th>
+        <th scope="col"></th>
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for cartitem in cart %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ cartitem.product }}</td>
+        <td>{{ cartitem.quantity }}</td>
+        <td>{{ cartitem.price }}</td>
+        <td>{{ cartitem.total_price }}</td>
+        <td><a href="{% url 'orders:remove_cart' cartitem.product.id %}">حذف</a></td>
+      </tr>
+      {% endfor %}
+
+
+
+    </tbody>
+
+  </table>
+
+
+
+
+
+  
+  <a  type="button" class="btn btn-info" href="{% url 'orders:create_order' %}">ثبت سفارش</a>
+
+{% endblock %}

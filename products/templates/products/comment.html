@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% for c in comment %}
+
+<p>{{ c.body }}</p>
+
+
+
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="brand"></div>
+</div>
+<h2 class="brand-before col-lg-12 text-center">
+    <small>به سایت  شکلات اورو خوش آمدید</small>
+</h2>
+
+
+
+</div>
+    
+
+    <div class="container">
+
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12 text-center">
+                    <div id="carousel-example-generic" class="carousel slide">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators hidden-xs">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img class="img-responsive img-full" src="{% static 'img/slide-1.jpg' %}" alt="">
+                            </div>
+                            <div class="item">
+                                <img class="img-responsive img-full" src="{% static 'img/slide-2.jpg' %}" alt="">
+                            </div>
+                            <div class="item">
+                                <img class="img-responsive img-full" src="{% static 'img/slide-3.jpg' %}" alt="">
+                            </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                            <span class="icon-prev"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                            <span class="icon-next"></span>
+                        </a>
+                    </div>
+                  
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h4 class="brand-before col-lg-12 text-center"><a href="{% url 'products:products' %}">برای دیدن محصولات و ثبت سفارش کلیک کنید</a></h4>
+                    <hr>
+                    <img class="img-responsive img-border img-left" src="{% static 'img/intro-pic.jpg' %}" alt="">
+                    <hr class="visible-xs">
+                    <p><h3>شکلات بن بن چیست؟</h3></p>
+                    <p>بن بن (bonbon یا bon bon) به انواع  شکلات و مخصوصاً آب نبات، با روکش شکلاتی یا ترافل، گفته می شود. این شکلات ها معمولا خامه ی کره ای، فوندانت، میوه یا آجیل در مغز خود دارند. شکلات بن بن، آب نبات های بدون روکش شکلات را هم شامل می شود. نام این شکلات، از کلمه فرانسوی bon به معنای خوب، گرفته شده است، که به نوعی خوب خوب معنی می شود. به این ترتیب بن بن یعنی خوب خوب؛ در حقیقت این شکلات ها آنقدر خوب هستند که کلمه خوب باید دو بار درباره آن گفته شود!
+                        در ایالات متحده، بن بن، شکلات منجمدی است که از بستنی وانیلی آغشته به شکلات ساخته شده است و محصول شرکت Hershey است. اگرچه این شکلات، محصول برندی شناخته شده در ایالات متحده است، اما واژه ی بن بن، معمولاً برای هر نوع آبنبات یا شکلاتی بکار برده می شود و به یک کلمه متداول در میان مردم تبدیل شده است. این تنقلات کوچک خوشمزه، مورد علاقه کودکان، در سراسر جهان هستند.</p>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">جعبه خوشمزه
+                        <strong>یک هدیه خاص برای عزیزان شما</strong>
+                    </h2>
+                    <hr>
+                    <p>با ثبت نظرات به بهبود روند تولید ما کمک کنید</p>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+    
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+{% endblock %}

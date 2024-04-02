@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="push-up top-equal blocks-spacer">
+
+            <!--  ==========  -->
+            <!--  = Product =  -->
+            <!--  ==========  -->
+            <div class="row blocks-spacer">
+
+                <!--  ==========  -->
+                <!--  = Preview Images =  -->
+                <!--  ==========  -->
+     
+                <div class="span5">
+                    <div class="product-preview">
+                        <div class="picture">
+                            <img src="{{ product.image.url }}" alt="" id="mainPreviewImg" width="400" height="400">
+                            <span><p class="display:inline-block">{{ product.info }}</p></span>
+                        </div>
+                    </div>
+                </div>
+                <!--  ==========  -->
+                <!--  = Title and short desc =  -->
+                <!--  ==========  -->
+                <div class="span7 display:inline-block" >
+                    <div class="product-title " >
+                        <h1 class="name">{{ product.title }}</h1>
+                        <div class="meta">
+                            <span class="tag">{{ product.price }} تومان</span>
+                            {% if product.is_active %}
+                            <span class="stock">
+                                <span class="btn btn-success">موجود</span>
+                            </span>
+                            {% else %}
+                            <span class="stock">
+                                <span class="btn btn-danger">نا موجود</span>
+                            </span>
+                            {% endif %}
+                        </div>
+                        <h5> تعداد بازدید :  {{ product.view }}</h5>
+                    </div>
+                    <div>
+                        
+            
+                    </div>
+                    <form action="{% url 'orders:add_cart' product.id %} " method="post">
+                        {% csrf_token %}
+                        {{ addform.as_p }}
+                        
+         
+                        <button type="submit" {% if not product.is_active %} disabled {% endif %} href="{% url 'orders:add_cart' product.id %}" class="btn btn-info pull-right"><i class="icon-shopping-cart"></i> اضافه به سبد خرید</button>
+
+                    </form>
+
+                
+                    <div class="product-description,">
+                        <hr>
+                        <div class="form-control">
+
+                        <form action="{% url 'products:products_detail' product.id  %}" class="form form-inline clearfix" method="post">
+                            {% csrf_token %}
+
+                            <div class="form-floating">
+                                <textarea   name="body" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                                <label for="floatingTextarea2">Comments</label>
+                              </div>
+                            <hr>
+                            
+                            
+                            
+                            
+                            <input type="submit", value="ثبت نظر">
+                            
+                        </form>
+                        </div>
+
+                        <hr>
+                        <div  class=" tab-pane" id="tab-3">          
+                            <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded" >
+                                
+                                {% for comment in product.pcomments.all %}
+                                {% if comment.is_reply == False %}
+                                <a class="h5 text-dark text-decoration-none me-5" href="#"> {{ comment.user.full_name }}</a>
+                                <span class="ms-3" >{{ comment.created|timesince }}</span>
+                                <p class="card-text">{{ comment.body }} </p>
+
+                               
+                                {% with replies=comment.rcomment.all %}
+                                    {% for reply in replies %}
+                                        <p>{{reply.body}}.....{{reply.user.full_name}} ....{{ reply.created|timesince}}</p>
+                                    {% endfor %}
+                                {% endwith %}
+                                {% if request.user.is_authenticated %}
+                                
+                                <div class="input-group mb-3" class="form-control" placeholder="reply this comment"aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <form action="{% url 'products:reply' product.id comment.id %}" method="post" class="form-control" placeholder="reply this comment"aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    {% csrf_token %}
+                                    <div class="input-group mb-3">
+                                        <input name="body" type="text" class="form-control " placeholder="entrer your reply" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                        <input    href="{% url 'products:reply' product.id comment.id %}"   type="submit", value="send">
+                                      </div>
+                                    
+                                </form>
+                                
+                                </div>
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                                
+                            </div>
+                            
+                            
+                        </div>
+                        
+                  
+
+                    </div>
+                    
+
+                </div>
+                
+            </div>
+
+            <!--  ==========  -->
+            <!--  = Tabs with more info =  -->
+            <!--  ==========  -->
+    
+        </div>
+    </div>
+
+    
+{% endblock %}

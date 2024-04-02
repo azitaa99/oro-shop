@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% for item in order.items.all %}
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{ item.product.image.url }}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{item.product }}</h5>
+          <br>
+          <h6 class="card-title">تعداد: {{item.quantity }}</h6>
+          <h6 class="card-title">قیمت : {{item.get_cost }}</h6>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+<h5> جمع فاکتور    :   {{ order.order_cost }} تومان</h5>
+<form action="{% url 'orders:apply_coupon' order.id %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit", value="اعمال کد">
+</form>
+
+<h5>مبلغ قابل پرداخت{{ order.get_total_price }}</h5>
+
+
+
+
+<a type="button" class="btn btn-info" href="{% url 'orders:sender_info' order.id %}">وارد کرن اطلاعات ارسال</a>
+
+
+{% endblock %}

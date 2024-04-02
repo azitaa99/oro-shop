@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+{% for c in category %}
+<button type="button" class="btn btn-light"><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></button>
+
+
+{% endfor %}
+<button><a href="{% url 'products:products' %}">همه محصولات</a></button>
+<br><br>
+
+
+{% for p in products %}
+<div class="card" style="width: 18rem;  display:inline-block ;">
+    <img src='{{ p.image.url }}' ,class="card-img-top", alt="..." ,width="400" height="270">
+    <div class="card-body">
+      <h5 class="card-title">{{ p.title }}</h5>
+      <p class="card-text">{{ p.info }}</p>
+      <h5>{{ p.price }}  تومان</h5>
+      <a href="{% url 'products:products_detail' p.id %}" class="btn btn-primary">جزییات</a>
+    </div>
+  </div>
+
+
+
+
+{% endfor %}
+
+
+{% endblock %}
